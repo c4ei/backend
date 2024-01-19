@@ -39,6 +39,7 @@ from cryptocoins.coins.usdt import USDT
 from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
 from cryptocoins.coins.matic import MATIC
+from cryptocoins.coins.aah import AAH
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -55,6 +56,7 @@ def main():
 
     IS_TRON = env('COMMON_TASKS_TRON', default=True, cast=bool)
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
+    IS_AAH = env('COMMON_TASKS_AAH', default=True, cast=bool)
     IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
 
     coin_list = [
@@ -64,6 +66,7 @@ def main():
         BNB,
         TRX,
         MATIC,
+        AAH,
     ]
     coin_info = {
         ETH: [
@@ -361,6 +364,56 @@ def main():
                 },
             },
         ],
+        AAH: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'name': 'AllAboutHealthy',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://exp.c4ex.net/tx/',
+                    'links': {
+                        "exp": {
+                            "href": "https://exp.c4ex.net/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://c4ex.net/",
+                            "title": "c4ex.net"
+                        }
+                    }
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 1000000.00000000,
+                    'limits_withdrawal_min': 0.00100000,
+                    'limits_withdrawal_max': 1000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 1000000.00000000,
+                    'limits_code_max': 1000000.00000000,
+                    'limits_accumulation_min': 0.00100000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'blockchain_currency': AAH,
+                    'address_fee': 0.00010000
+                },
+            },
+        ],
         MATIC: [
             {
                 'model': CoinInfo,
@@ -417,6 +470,22 @@ def main():
             {
                 'model': DisabledCoin,
                 'find': {'currency': BNB},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+
+    if not IS_AAH:
+        coin_info[AAH].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': AAH},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
