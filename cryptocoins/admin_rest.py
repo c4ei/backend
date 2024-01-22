@@ -142,23 +142,6 @@ class AahWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
 
     process.short_description = 'Process withdrawals'
 
-@api_admin.register(AahWithdrawalApprove)
-class AahWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
-    def get_queryset(self):
-        return get_withdrawal_requests_to_process(
-            [AAH_CURRENCY, *ERC20_AAH_CURRENCIES],
-            blockchain_currency='AAH'
-        )
-
-    @api_admin.action(permissions=True)
-    def process(self, request, queryset):
-        serializer = AahKeySerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            password = request.data.get('key')
-            process_payouts_task.apply_async(['AAH', password, ], queue='aah_payouts')
-
-    process.short_description = 'Process withdrawals'
-
 @api_admin.register(TransactionInputScore)
 class TransactionInputScoreAdmin(ReadOnlyMixin, DefaultApiAdmin):
     vue_resource_extras = {'title': 'Transaction Input Score'}
