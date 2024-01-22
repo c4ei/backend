@@ -24,7 +24,7 @@ BLOCKCHAINS = {
     ),
     'AAH': TokenParams(
         symbol=CODE,
-        contract_address='0xe022f24edd0558f22ecbd19c8ad140a5f59b9a67',
+        contract_address='0xE022f24EDd0558F22ECbd19c8Ad140a5F59B9a67',
         decimal_places=6,
     ),
 }
