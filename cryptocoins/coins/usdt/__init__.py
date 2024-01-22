@@ -22,5 +22,10 @@ BLOCKCHAINS = {
         origin_energy_limit=10000000,
         consume_user_resource_percent=30,
     ),
+    'AAH': TokenParams(
+        symbol=CODE,
+        contract_address='0xe022f24edd0558f22ecbd19c8ad140a5f59b9a67',
+        decimal_places=6,
+    ),
 }
 USDT_CURRENCY = register_token(USDT, CODE, BLOCKCHAINS)
