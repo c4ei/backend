@@ -24,3 +24,7 @@ class BNBWithdrawalApprove(BaseWithdrawalRequest):
 class MaticWithdrawalApprove(BaseWithdrawalRequest):
     class Meta:
         proxy = True
+
+class AahWithdrawalApprove(BaseWithdrawalRequest):
+    class Meta:
+        proxy = True

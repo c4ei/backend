@@ -56,8 +56,8 @@ def main():
 
     IS_TRON = env('COMMON_TASKS_TRON', default=True, cast=bool)
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
-    IS_AAH = env('COMMON_TASKS_AAH', default=True, cast=bool)
     IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
+    IS_AAH = env('COMMON_TASKS_AAH', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -369,72 +369,22 @@ def main():
                 'model': CoinInfo,
                 'find': {'currency': AAH},
                 'attributes': {
-                    'name': 'AllAboutHealthy',
-                    'decimals': 8,
-                    'index': 28,
-                    'tx_explorer': 'https://exp.c4ex.net/tx/',
-                    'links': {
-                        "exp": {
-                            "href": "https://exp.c4ex.net/",
-                            "title": "Explorer"
-                        },
-                        "official": {
-                            "href": "https://c4ex.net/",
-                            "title": "c4ex.net"
-                        }
-                    }
-                },
-            },
-            {
-                'model': FeesAndLimits,
-                'find': {'currency': AAH},
-                'attributes': {
-                    'limits_deposit_min': 0.00010000,
-                    'limits_deposit_max': 1000000.00000000,
-                    'limits_withdrawal_min': 0.00100000,
-                    'limits_withdrawal_max': 1000000.00000000,
-                    'limits_order_min': 0.01000000,
-                    'limits_order_max': 1000000.00000000,
-                    'limits_code_max': 1000000.00000000,
-                    'limits_accumulation_min': 0.00100000,
-                    'fee_deposit_address': 0,
-                    'fee_deposit_code': 0,
-                    'fee_withdrawal_code': 0,
-                    'fee_order_limits': 0.00100000,
-                    'fee_order_market': 0.00200000,
-                    'fee_exchange_value': 0.00200000,
-                },
-            },
-            {
-                'model': WithdrawalFee,
-                'find': {'currency': AAH},
-                'attributes': {
-                    'blockchain_currency': AAH,
-                    'address_fee': 0.00010000
-                },
-            },
-        ],
-        MATIC: [
-            {
-                'model': CoinInfo,
-                'find': {'currency': MATIC},
-                'attributes': {
-                    'name': 'MATIC',
+                    'name': 'AAH',
                     'decimals': 8,
                     'index': 27,
-                    'tx_explorer': 'https://polygonscan.com/tx/',
+                    'tx_explorer': 'https://exp.c4ex.net.com/tx/',
                     'links': {
                         "bt": {"href": "", "title": "BitcoinTalk"},
                         "cmc": {"href": "", "title": "CoinMarketCap"},
                         "exp": {"href": "", "title": "Explorer"},
                         "official": {"href": "", "title": ""}
                     },
-                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png',
+                    'logo': '',
                 },
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': MATIC},
+                'find': {'currency': AAH},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -456,9 +406,61 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': MATIC},
+                'find': {'currency': AAH},
                 'attributes': {
-                    'blockchain_currency': MATIC,
+                    'blockchain_currency': AAH,
+                    'address_fee': 0.00300000
+                },
+            },
+        ],
+        AAH: [
+            {
+                'model': CoinInfo,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'name': 'AllAboutHealthy',
+                    'decimals': 8,
+                    'index': 28,
+                    'tx_explorer': 'https://exp.c4ex.net/tx/',
+                    'links': {
+                        "exp": {
+                            "href": "https://exp.c4ex.net/",
+                            "title": "Explorer"
+                        },
+                        "official": {
+                            "href": "https://c4ex.net/",
+                            "title": "c4ex.net"
+                        }
+                    }
+                },
+            },
+            {
+                'model': FeesAndLimits,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'limits_deposit_min': 0.00010000,
+                    'limits_deposit_max': 10000000.00000000,
+                    'limits_withdrawal_min': 0.00010000,
+                    'limits_withdrawal_max': 10000000.00000000,
+                    'limits_order_min': 0.01000000,
+                    'limits_order_max': 100000000.00000000,
+                    'limits_code_max': 10000000.00000000,
+                    'limits_accumulation_min': 0.00010000,
+                    'fee_deposit_address': 0,
+                    'fee_deposit_code': 0,
+                    'fee_withdrawal_code': 0,
+                    'fee_order_limits': 0.00100000,
+                    'fee_order_market': 0.00200000,
+                    'fee_exchange_value': 0.00200000,
+                    'limits_keeper_accumulation_balance': 100.00000000,
+                    'limits_accumulation_max_gas_price': 500.00000000,
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': AAH},
+                'attributes': {
+                    'blockchain_currency': AAH,
                     'address_fee': 0.00300000
                 },
             },
@@ -470,22 +472,6 @@ def main():
             {
                 'model': DisabledCoin,
                 'find': {'currency': BNB},
-                'attributes': {
-                    'disable_all': True,
-                    'disable_stack': True,
-                    'disable_pairs': True,
-                    'disable_exchange': True,
-                    'disable_withdrawals': True,
-                    'disable_topups': True,
-                },
-            },
-        )
-
-    if not IS_AAH:
-        coin_info[AAH].append(
-            {
-                'model': DisabledCoin,
-                'find': {'currency': AAH},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -518,6 +504,22 @@ def main():
             {
                 'model': DisabledCoin,
                 'find': {'currency': MATIC},
+                'attributes': {
+                    'disable_all': True,
+                    'disable_stack': True,
+                    'disable_pairs': True,
+                    'disable_exchange': True,
+                    'disable_withdrawals': True,
+                    'disable_topups': True,
+                },
+            },
+        )
+
+    if not IS_AAH:
+        coin_info[TRX].append(
+            {
+                'model': DisabledCoin,
+                'find': {'currency': AAH},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
