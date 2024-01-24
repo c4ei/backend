@@ -364,27 +364,27 @@ def main():
                 },
             },
         ],
-        AAH: [
+        MATIC: [
             {
                 'model': CoinInfo,
-                'find': {'currency': AAH},
+                'find': {'currency': MATIC},
                 'attributes': {
-                    'name': 'AAH',
+                    'name': 'MATIC',
                     'decimals': 8,
                     'index': 27,
-                    'tx_explorer': 'https://exp.c4ex.net.com/tx/',
+                    'tx_explorer': 'https://polygonscan.com/tx/',
                     'links': {
                         "bt": {"href": "", "title": "BitcoinTalk"},
                         "cmc": {"href": "", "title": "CoinMarketCap"},
                         "exp": {"href": "", "title": "Explorer"},
                         "official": {"href": "", "title": ""}
                     },
-                    'logo': '',
+                    'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png',
                 },
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': AAH},
+                'find': {'currency': MATIC},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -406,9 +406,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': AAH},
+                'find': {'currency': MATIC},
                 'attributes': {
-                    'blockchain_currency': AAH,
+                    'blockchain_currency': MATIC,
                     'address_fee': 0.00300000
                 },
             },
@@ -600,6 +600,9 @@ def main():
         pairs = PAIRS_LIST + [
             (12, 'MATIC-USDT')
         ]
+        pairs = PAIRS_LIST + [
+            (13, 'AAH-USDT')
+        ]
 
         for pair_data in pairs:
             id_value, code = pair_data
@@ -743,6 +746,35 @@ def main():
                     'low_orders_spread_size': 1,
                     'low_orders_min_order_size': 1,
                     'enabled': IS_MATIC,
+                }
+            },
+            Pair.get('AAH-USDT'): {
+                PairSettings: {
+                    'is_enabled': IS_AAH,
+                    'is_autoorders_enabled': True,
+                    'price_source': PairSettings.PRICE_SOURCE_EXTERNAL,
+                    'custom_price': 0,
+                    'deviation': 0.0,
+                    'precisions': ['10', '1', '0.1', '0.01', '0.001'],
+                },
+                BotConfig: {
+                    'name': 'AAH-USDT',
+                    'user': bot,
+                    'strategy': BotConfig.TRADE_STRATEGY_DRAW,
+                    'symbol_precision': 6,
+                    'quote_precision': 6,
+                    'instant_match': True,
+                    'ohlc_period': 60,
+                    'loop_period_random': True,
+                    'min_period': 60,
+                    'max_period': 180,
+                    'ext_price_delta': 0.001,
+                    'min_order_quantity': 10,
+                    'max_order_quantity': 10000,
+                    'low_orders_max_match_size': 1,
+                    'low_orders_spread_size': 1,
+                    'low_orders_min_order_size': 1,
+                    'enabled': IS_AAH,
                 }
             },
         }
