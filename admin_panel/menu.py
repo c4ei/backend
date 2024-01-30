@@ -143,6 +143,7 @@ class CustomMenu(Menu):
                             items.MenuItem('Approve BNB', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/bnb/'),
                             items.MenuItem('Approve MATIC', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/matic/'),
                             items.MenuItem('Approve AAH', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/aah/'),
+                            items.MenuItem('Approve KLAY', f'/{ADMIN_BASE_URL}/withdrawal_request/approve/klay/'),
                         ]
                     ),
                     items.MenuItem('Make Topup', f'/{ADMIN_BASE_URL}/make/top-up/'),

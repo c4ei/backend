@@ -7,7 +7,7 @@ from django.db.models import Max
 from web3 import Web3
 
 from core.consts.currencies import BEP20_CURRENCIES, ERC20_CURRENCIES, TRC20_CURRENCIES, CURRENCIES_LIST, \
-    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_AAH_CURRENCIES
+    CRYPTO_ADDRESS_VALIDATORS, ERC20_MATIC_CURRENCIES, ERC20_AAH_CURRENCIES, ERC20_KLAY_CURRENCIES
 from core.currency import Currency, CurrencyNotFound
 from core.models import PairSettings, FeesAndLimits, WithdrawalFee
 from core.models.facade import CoinInfo
@@ -23,13 +23,15 @@ TOKENS_BLOCKCHAINS_MAP = {
     'TRX': TRC20_CURRENCIES,
     'MATIC': ERC20_MATIC_CURRENCIES,
     'AAH': ERC20_AAH_CURRENCIES,
+    'KLAY': ERC20_KLAY_CURRENCIES,
 }
 EXPLORERS_MAP = {
     'ETH': 'https://etherscan.io/',
     'BNB': 'https://bscscan.com/',
     'TRX': 'https://tronscan.org/',
     'MATIC': 'https://polygonscan.com/',
-    'AAH': 'https://c4ex.net/',
+    'AAH': 'https://exp.c4ex.net/',
+    'KLAY': 'https://klaytnscope.com/',
 }
 
 HEADER = """ 
@@ -125,7 +127,7 @@ class Command(BaseCommand):
             # common token data
             token_symbol = prompt('Token symbol* (i.e. USDT)').upper()
             blockchain_symbol = prompt('Token blockchain symbol* (i.e. ETH)', choices=[
-                'ETH', 'BNB', 'TRX', 'MATIC', 'AAH',
+                'ETH', 'BNB', 'TRX', 'MATIC', 'AAH', 'KLAY',
             ])
 
             if is_token_exists(token_symbol, blockchain_symbol):
@@ -365,7 +367,7 @@ def prompt_contract(blockchain):
         if not check_address(blockchain, contract, blockchain):
             print('[!] Incorrect contract address')
             continue
-        if blockchain in ['ETH', 'BNB', 'MATIC', 'AAH']:
+        if blockchain in ['ETH', 'BNB', 'MATIC', 'AAH', 'KLAY']:
             contract = Web3.to_checksum_address(contract)
         exists_contracts = [v.contract_address for k, v in TOKENS_BLOCKCHAINS_MAP[blockchain].items()]
         if contract in exists_contracts:

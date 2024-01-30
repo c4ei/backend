@@ -27,5 +27,10 @@ BLOCKCHAINS = {
         contract_address='0xE022f24EDd0558F22ECbd19c8Ad140a5F59B9a67',
         decimal_places=6,
     ),
+    'KLAY': TokenParams(
+        symbol=CODE,
+        contract_address='0xFD139C5c8b018B4509Ba606a244a7b0603144311',
+        decimal_places=6,
+    )
 }
 USDT_CURRENCY = register_token(USDT, CODE, BLOCKCHAINS)
