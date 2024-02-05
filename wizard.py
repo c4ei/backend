@@ -680,6 +680,16 @@ def main():
             (14, 'KLAY-USDT')
         ]
 
+        pairs = PAIRS_LIST + [ (15, 'KLAY-AAH') ]
+        pairs = PAIRS_LIST + [ (16, 'BTC-AAH') ]
+        pairs = PAIRS_LIST + [ (17, 'ETH-AAH') ]
+        pairs = PAIRS_LIST + [ (18, 'BNB-AAH') ]
+        pairs = PAIRS_LIST + [ (19, 'TRX-AAH') ]
+        pairs = PAIRS_LIST + [ (20, 'MATIC-AAH') ]
+        pairs = PAIRS_LIST + [ (1001, 'SAWON-KLAY') ]
+        pairs = PAIRS_LIST + [ (1002, 'CEIK-KLAY') ]
+        pairs = PAIRS_LIST + [ (1003, 'AKRW-USDT') ]
+
         for pair_data in pairs:
             id_value, code = pair_data
             base, quote = code.split('-')
