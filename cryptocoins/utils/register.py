@@ -8,7 +8,8 @@ from core.consts.currencies import (
     CRYPTO_WALLET_ACCOUNT_CREATORS,
     ERC20_MATIC_CURRENCIES,
     ERC20_AAH_CURRENCIES,
-    ERC20_KLAY_CURRENCIES,
+    # ERC20_KLAY_CURRENCIES,
+    ERC20_C4EI_CURRENCIES,
 )
 from core.consts.currencies import ALL_TOKEN_CURRENCIES
 from core.consts.currencies import BEP20_CURRENCIES
@@ -17,6 +18,9 @@ from core.consts.currencies import CRYPTO_WALLET_CREATORS
 from core.consts.currencies import CURRENCIES_LIST
 from core.consts.currencies import ERC20_CURRENCIES
 from core.consts.currencies import TRC20_CURRENCIES
+from core.consts.currencies import ERC20_MATIC_CURRENCIES
+from core.consts.currencies import ERC20_AAH_CURRENCIES
+from core.consts.currencies import ERC20_C4EI_CURRENCIES
 from core.currency import Currency, TokenParams, CoinParams
 
 log = logging.getLogger(__name__)
@@ -125,16 +129,27 @@ def register_token(currency_id, currency_code, blockchains: Optional[Dict[str, T
 
             log.debug(f'Token {currency} registered as ERC20 C4ex')
 
-        if 'KLAY' in blockchains:
-            from cryptocoins.coins.klay.wallet import erc20_cypress_wallet_creation_wrapper, is_valid_klay_address
+        # if 'KLAY' in blockchains:
+        #     from cryptocoins.coins.klay.wallet import erc20_cypress_wallet_creation_wrapper, is_valid_klay_address
 
-            ERC20_KLAY_CURRENCIES.update({
-                currency: blockchains['KLAY']
+        #     ERC20_KLAY_CURRENCIES.update({
+        #         currency: blockchains['KLAY']
+        #     })
+        #     wallet_creators['KLAY'] = erc20_cypress_wallet_creation_wrapper
+        #     address_validators['KLAY'] = is_valid_klay_address
+
+        #     log.debug(f'Token {currency} registered as ERC20 Cypress')
+
+        if 'C4EI' in blockchains:
+            from cryptocoins.coins.klay.wallet import erc20_cfei_wallet_creation_wrapper, is_valid_c4ei_address
+
+            ERC20_C4EI_CURRENCIES.update({
+                currency: blockchains['C4EI']
             })
-            wallet_creators['KLAY'] = erc20_cypress_wallet_creation_wrapper
-            address_validators['KLAY'] = is_valid_klay_address
+            wallet_creators['C4EI'] = erc20_cfei_wallet_creation_wrapper
+            address_validators['C4EI'] = is_valid_c4ei_address
 
-            log.debug(f'Token {currency} registered as ERC20 Cypress')
+            log.debug(f'Token {currency} registered as ERC20 Cfei')
 
 
         CRYPTO_WALLET_CREATORS[currency] = wallet_creators

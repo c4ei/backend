@@ -40,7 +40,8 @@ from cryptocoins.coins.bnb import BNB
 from cryptocoins.coins.trx import TRX
 from cryptocoins.coins.matic import MATIC
 from cryptocoins.coins.aah import AAH
-from cryptocoins.coins.klay import KLAY
+# from cryptocoins.coins.klay import KLAY
+from cryptocoins.coins.c4ei import C4EI
 
 from cryptocoins.utils.btc import generate_btc_multisig_keeper
 
@@ -59,7 +60,8 @@ def main():
     IS_BSC = env('COMMON_TASKS_BNB', default=True, cast=bool)
     IS_MATIC = env('COMMON_TASKS_MATIC', default=True, cast=bool)
     IS_AAH = env('COMMON_TASKS_AAH', default=True, cast=bool)
-    IS_KLAY = env('COMMON_TASKS_KLAY', default=True, cast=bool)
+    # IS_KLAY = env('COMMON_TASKS_KLAY', default=True, cast=bool)
+    IS_C4EI = env('COMMON_TASKS_C4EI', default=True, cast=bool)
 
     coin_list = [
         ETH,
@@ -69,7 +71,8 @@ def main():
         TRX,
         MATIC,
         AAH,
-        KLAY,
+        # KLAY,
+        C4EI,
     ]
     coin_info = {
         ETH: [
@@ -258,6 +261,30 @@ def main():
                     'address_fee': 1.00000000
                 },
             },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': USDT, 'blockchain_currency': MATIC},
+                'attributes': {
+                    'blockchain_currency': MATIC,
+                    'address_fee': 1.00000000
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': USDT, 'blockchain_currency': AAH},
+                'attributes': {
+                    'blockchain_currency': AAH,
+                    'address_fee': 1.00000000
+                },
+            },
+            {
+                'model': WithdrawalFee,
+                'find': {'currency': USDT, 'blockchain_currency': KLAY},
+                'attributes': {
+                    'blockchain_currency': KLAY,
+                    'address_fee': 1.00000000
+                },
+            },
         ],
         TRX: [
             {
@@ -378,8 +405,8 @@ def main():
                     'tx_explorer': 'https://polygonscan.com/tx/',
                     'links': {
                         "bt": {"href": "", "title": "BitcoinTalk"},
-                        "cmc": {"href": "", "title": "CoinMarketCap"},
-                        "exp": {"href": "", "title": "Explorer"},
+                        "cmc": {"href": "https://coinmarketcap.com/currencies/polygon/", "title": "CoinMarketCap"},
+                        "exp": {"href": "https://polygonscan.com/", "title": "Explorer"},
                         "official": {"href": "", "title": ""}
                     },
                     'logo': 'https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png',
@@ -423,7 +450,7 @@ def main():
                 'attributes': {
                     'name': 'AllAboutHealthy',
                     'decimals': 8,
-                    'index': 28,
+                    'index': 30,
                     'tx_explorer': 'https://exp.c4ex.net/tx/',
                     'links': {
                         "exp": {
@@ -468,30 +495,82 @@ def main():
                 },
             },
         ],
-        KLAY: [
+        # KLAY: [
+        #     {
+        #         'model': CoinInfo,
+        #         'find': {'currency': KLAY},
+        #         'attributes': {
+        #             'name': 'Klaytn',
+        #             'decimals': 8,
+        #             'index': 40,
+        #             'tx_explorer': 'https://klaytnscope.com/tx/',
+        #             'links': {
+        #                 "exp": {
+        #                     "href": "https://klaytnscope.com/",
+        #                     "title": "Explorer"
+        #                 },
+        #                 "official": {
+        #                     "href": "https://klaytn.foundation/",
+        #                     "title": "klaytn"
+        #                 }
+        #             }
+        #         },
+        #     },
+        #     {
+        #         'model': FeesAndLimits,
+        #         'find': {'currency': KLAY},
+        #         'attributes': {
+        #             'limits_deposit_min': 0.00010000,
+        #             'limits_deposit_max': 10000000.00000000,
+        #             'limits_withdrawal_min': 0.00010000,
+        #             'limits_withdrawal_max': 10000000.00000000,
+        #             'limits_order_min': 0.01000000,
+        #             'limits_order_max': 100000000.00000000,
+        #             'limits_code_max': 10000000.00000000,
+        #             'limits_accumulation_min': 0.00010000,
+        #             'fee_deposit_address': 0,
+        #             'fee_deposit_code': 0,
+        #             'fee_withdrawal_code': 0,
+        #             'fee_order_limits': 0.00100000,
+        #             'fee_order_market': 0.00200000,
+        #             'fee_exchange_value': 0.00200000,
+        #             'limits_keeper_accumulation_balance': 100.00000000,
+        #             'limits_accumulation_max_gas_price': 500.00000000,
+        #         },
+        #     },
+        #     {
+        #         'model': WithdrawalFee,
+        #         'find': {'currency': KLAY},
+        #         'attributes': {
+        #             'blockchain_currency': KLAY,
+        #             'address_fee': 0.00300000
+        #         },
+        #     },
+        # ],
+        C4EI: [
             {
                 'model': CoinInfo,
-                'find': {'currency': KLAY},
+                'find': {'currency': C4EI},
                 'attributes': {
-                    'name': 'Klaytn',
+                    'name': 'c4ei',
                     'decimals': 8,
-                    'index': 29,
-                    'tx_explorer': 'https://klaytnscope.com/tx/',
+                    'index': 50,
+                    'tx_explorer': 'https://c4ei.net/tx/',
                     'links': {
                         "exp": {
-                            "href": "https://klaytnscope.com/",
+                            "href": "https://exp.c4ei.net/",
                             "title": "Explorer"
                         },
                         "official": {
-                            "href": "https://klaytn.foundation/",
-                            "title": "klaytn"
+                            "href": "https://c4ei.net/",
+                            "title": "c4ei"
                         }
                     }
                 },
             },
             {
                 'model': FeesAndLimits,
-                'find': {'currency': KLAY},
+                'find': {'currency': C4EI},
                 'attributes': {
                     'limits_deposit_min': 0.00010000,
                     'limits_deposit_max': 10000000.00000000,
@@ -513,9 +592,9 @@ def main():
             },
             {
                 'model': WithdrawalFee,
-                'find': {'currency': KLAY},
+                'find': {'currency': C4EI},
                 'attributes': {
-                    'blockchain_currency': KLAY,
+                    'blockchain_currency': C4EI,
                     'address_fee': 0.00300000
                 },
             },
@@ -586,11 +665,27 @@ def main():
             },
         )
 
-    if not IS_KLAY:
-        coin_info[KLAY].append(
+    # if not IS_KLAY:
+    #     coin_info[KLAY].append(
+    #         {
+    #             'model': DisabledCoin,
+    #             'find': {'currency': KLAY},
+    #             'attributes': {
+    #                 'disable_all': True,
+    #                 'disable_stack': True,
+    #                 'disable_pairs': True,
+    #                 'disable_exchange': True,
+    #                 'disable_withdrawals': True,
+    #                 'disable_topups': True,
+    #             },
+    #         },
+    #     )
+
+    if not IS_C4EI:
+        coin_info[C4EI].append(
             {
                 'model': DisabledCoin,
-                'find': {'currency': KLAY},
+                'find': {'currency': C4EI},
                 'attributes': {
                     'disable_all': True,
                     'disable_stack': True,
@@ -655,6 +750,7 @@ def main():
                 MATIC: 10_000,
                 AAH: 10_000,
                 KLAY: 10_000,
+                C4EI: 10_000,
             }
 
             for currency_id, amount in topup_list.items():
@@ -671,24 +767,17 @@ def main():
         to_write.append('='*10)
 
         pairs = PAIRS_LIST + [
-            (12, 'MATIC-USDT')
+            (20, 'MATIC-USDT')
         ]
         pairs = PAIRS_LIST + [
-            (13, 'AAH-USDT')
+            (30, 'AAH-USDT')
         ]
         pairs = PAIRS_LIST + [
-            (14, 'KLAY-USDT')
+            (40, 'KLAY-USDT')
         ]
-
-        pairs = PAIRS_LIST + [ (15, 'KLAY-AAH') ]
-        pairs = PAIRS_LIST + [ (16, 'BTC-AAH') ]
-        pairs = PAIRS_LIST + [ (17, 'ETH-AAH') ]
-        pairs = PAIRS_LIST + [ (18, 'BNB-AAH') ]
-        pairs = PAIRS_LIST + [ (19, 'TRX-AAH') ]
-        pairs = PAIRS_LIST + [ (20, 'MATIC-AAH') ]
-        pairs = PAIRS_LIST + [ (1001, 'SAWON-KLAY') ]
-        pairs = PAIRS_LIST + [ (1002, 'CEIK-KLAY') ]
-        pairs = PAIRS_LIST + [ (1003, 'AKRW-USDT') ]
+        pairs = PAIRS_LIST + [
+            (50, 'C4EI-USDT')
+        ]
 
         for pair_data in pairs:
             id_value, code = pair_data

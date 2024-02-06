@@ -13,6 +13,9 @@ PAIRS_LIST = [
     (ETH_USDT, 'ETH-USDT'),
     (TRX_USDT, 'TRX-USDT'),
     (BNB_USDT, 'BNB-USDT'),
+    (MATIC_USDT, 'MATIC-USDT'),
+    (AAH_USDT, 'AAH-USDT'),
+    (KLAY_USDT, 'KLAY-USDT'),
 ]
 
 class PairNotFound(CurrencyNotFound):

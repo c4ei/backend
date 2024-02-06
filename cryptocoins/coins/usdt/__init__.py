@@ -22,15 +22,20 @@ BLOCKCHAINS = {
         origin_energy_limit=10000000,
         consume_user_resource_percent=30,
     ),
+    'MATIC': TokenParams(
+        symbol=CODE,
+        contract_address='0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+        decimal_places=6,
+    ),
     'AAH': TokenParams(
         symbol=CODE,
-        contract_address='0xE022f24EDd0558F22ECbd19c8Ad140a5F59B9a67',
-        decimal_places=6,
+        contract_address='0x3adBF8fa04c21517D8E50908305D0413D2A44300',
+        decimal_places=18,
     ),
     'KLAY': TokenParams(
         symbol=CODE,
-        contract_address='0xFD139C5c8b018B4509Ba606a244a7b0603144311',
-        decimal_places=6,
+        contract_address='0xE022f24EDd0558F22ECbd19c8Ad140a5F59B9a67',
+        decimal_places=18,
     )
 }
 USDT_CURRENCY = register_token(USDT, CODE, BLOCKCHAINS)

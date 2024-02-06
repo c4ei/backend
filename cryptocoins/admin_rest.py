@@ -107,10 +107,7 @@ class BNBWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
 @api_admin.register(MaticWithdrawalApprove)
 class MaticWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
     def get_queryset(self):
-        return get_withdrawal_requests_to_process(
-            [MATIC_CURRENCY, *ERC20_MATIC_CURRENCIES],
-            blockchain_currency='MATIC'
-        )
+        return get_withdrawal_requests_to_process([MATIC_CURRENCY, *ERC20_MATIC_CURRENCIES], blockchain_currency='MATIC')
 
     @api_admin.action(permissions=True)
     def process(self, request, queryset):
@@ -124,10 +121,7 @@ class MaticWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
 @api_admin.register(AahWithdrawalApprove)
 class AahWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
     def get_queryset(self):
-        return get_withdrawal_requests_to_process(
-            [AAH_CURRENCY, *ERC20_AAH_CURRENCIES],
-            blockchain_currency='AAH'
-        )
+        return get_withdrawal_requests_to_process([AAH_CURRENCY, *ERC20_AAH_CURRENCIES], blockchain_currency='AAH')
 
     @api_admin.action(permissions=True)
     def process(self, request, queryset):
@@ -141,10 +135,7 @@ class AahWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
 @api_admin.register(KlayWithdrawalApprove)
 class KlayWithdrawalApproveApiAdmin(BaseWithdrawalApprove):
     def get_queryset(self):
-        return get_withdrawal_requests_to_process(
-            [KLAY_CURRENCY, *ERC20_KLAY_CURRENCIES],
-            blockchain_currency='KLAY'
-        )
+        return get_withdrawal_requests_to_process([KLAY_CURRENCY, *ERC20_KLAY_CURRENCIES], blockchain_currency='KLAY')
 
     @api_admin.action(permissions=True)
     def process(self, request, queryset):

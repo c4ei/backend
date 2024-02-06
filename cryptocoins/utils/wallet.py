@@ -32,9 +32,6 @@ def generate_new_wallet_account(currency) -> BlockchainAccount:
     from cryptocoins.coins.eth import ETH_CURRENCY
     from cryptocoins.coins.trx import TRX_CURRENCY
     from cryptocoins.coins.bnb import BNB_CURRENCY
-    from cryptocoins.coins.matic import MATIC_CURRENCY
-    from cryptocoins.coins.aah import AAH_CURRENCY
-    from cryptocoins.coins.klay import KLAY_CURRENCY
     from cryptocoins.coins.eth.wallet import create_new_blockchain_account as create_eth_wallet
     from cryptocoins.coins.trx.wallet import create_new_blockchain_account as create_trx_wallet
 
@@ -42,8 +39,7 @@ def generate_new_wallet_account(currency) -> BlockchainAccount:
         from cryptocoins.coins.btc.service import BTCCoinService
         service = BTCCoinService()
         wallet_account = service.create_new_wallet()
-    # elif currency in [ETH_CURRENCY, BNB_CURRENCY]:
-    elif currency in [ETH_CURRENCY, BNB_CURRENCY,MATIC_CURRENCY , AAH_CURRENCY, KLAY_CURRENCY]:
+    elif currency in [ETH_CURRENCY, BNB_CURRENCY]:
         wallet_account = create_eth_wallet()
     elif currency == TRX_CURRENCY:
         wallet_account = create_trx_wallet()

@@ -33,7 +33,7 @@ CRYPTO_STATS_HANDLERS = [
 FIAT_STATS_HANDLERS = [
 ]
 
-
+# cold wallet 으로 보내기 위한 핸들러로 파악됨
 class StatsProcessor:
 
     @classmethod

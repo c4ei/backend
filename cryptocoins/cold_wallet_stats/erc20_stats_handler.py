@@ -45,6 +45,6 @@ class Erc20StatsHandler(BaseStatsHandler):
         data_to_save = self.generate_output_dict(**data)
         return data_to_save
 
-
+# cold wallet 으로 보내기 위한 핸들러로 파악됨
 class UsdtEthStatsHandler(Erc20StatsHandler):
     CURRENCY = 'USDT'
